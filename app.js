@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const session = require('express-session');
-const MongoStore = require('./node_modules/connect-mongo/dist/index.d.cts');
+const MongoStore = require('connect-mongo');
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
 const { MongoClient } = require('mongodb');
