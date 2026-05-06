@@ -9,7 +9,7 @@ const { MongoClient } = require('mongodb'); // connect to MongoDB
 
 const app = express(); // create express app
 
-const PORT = process.env.PORT || 3000; // server port
+const PORT = process.env.PORT || 10000; // server port
 const expireTime = 60 * 60 * 1000; // session lasts 1 hour
 const saltRounds = 12; // strength of password hashing
 
