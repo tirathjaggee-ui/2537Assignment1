@@ -26,6 +26,7 @@ const mongoUrl = `mongodb+srv://${mongodb_user}:${mongodb_password}@${mongodb_ho
 
 // connect to database
 const client = new MongoClient(mongoUrl);
+client.connect();
 const database = client.db(mongodb_database);
 const userCollection = database.collection('users'); // collection for users
 
@@ -34,9 +35,7 @@ app.use(express.urlencoded({ extended: false })); // allows reading form data
 // create session store in MongoDB
 const mongoStore = MongoStore.create({
     mongoUrl: mongoUrl,
-    crypto: {
-        secret: mongodb_session_secret // encrypt session data
-    }
+    collectionName: 'sessions',
 });
 
 // configure sessions
@@ -44,7 +43,7 @@ app.use(session({
     secret: node_session_secret, // session secret key
     store: mongoStore, // store sessions in MongoDB
     saveUninitialized: false,
-    resave: true,
+    resave: false,
     cookie: {
         maxAge: expireTime // session expiry time
     }
@@ -134,7 +133,9 @@ app.post('/signupSubmit', async (req, res) => {
     req.session.email = email;
     req.session.cookie.maxAge = expireTime;
 
-    res.redirect('/members'); // go to members page
+    req.session.save(() => {
+        res.redirect('/members'); // go to members page
+    });
 });
 
 // LOGIN PAGE
@@ -192,7 +193,9 @@ app.post('/loginSubmit', async (req, res) => {
         req.session.email = result[0].email;
         req.session.cookie.maxAge = expireTime;
 
-        res.redirect('/members');
+        req.session.save(() => {
+            res.redirect('/members');
+        });
     } else {
         res.send(`
             <h3>Invalid email/password combination.</h3>
