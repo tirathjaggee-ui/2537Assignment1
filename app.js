@@ -238,6 +238,8 @@ app.use((req, res) => {
     res.send("Page not found - 404");
 });
 
+
+const PORT = process.env.PORT || 10000;
 // start server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
