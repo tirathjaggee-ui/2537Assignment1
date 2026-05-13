@@ -1,0 +1,29 @@
+<!-- includes the shared header template -->
+<%- include("templates/header") %>
+
+<!-- checks if the user is NOT logged in -->
+<% if (!authenticated) { %>
+
+    <!-- signup button -->
+    <a class="btn btn-primary" href="/signup">Sign up</a>
+
+    <!-- login button -->
+    <a class="btn btn-success" href="/login">Log in</a>
+
+<!-- otherwise the user IS logged in -->
+<% } else { %>
+
+    <!-- displays the user's name -->
+    <h2>Hello, <%= name %></h2>
+
+    <!-- button to go to members page -->
+    <a class="btn btn-primary" href="/members">Go to Members Area</a>
+
+    <!-- logout button -->
+    <a class="btn btn-danger" href="/logout">Logout</a>
+
+<!-- ends the if statement -->
+<% } %>
+
+<!-- includes the shared footer template -->
+<%- include("templates/footer") %>

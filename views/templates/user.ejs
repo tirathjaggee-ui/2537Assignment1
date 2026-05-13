@@ -1,0 +1,19 @@
+<!-- list item for one user -->
+<li class="mb-2">
+
+    <!-- displays user name and type -->
+    <%= user.name %> (<%= user.user_type %>)
+
+    <!-- promote user button -->
+    <a class="btn btn-sm btn-danger"
+       href="/promote/<%= user.email %>">
+       Promote to Admin
+    </a>
+
+    <!-- demote user button -->
+    <a class="btn btn-sm btn-success"
+       href="/demote/<%= user.email %>">
+       Demote to User
+    </a>
+
+</li>

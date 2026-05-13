@@ -1,0 +1,28 @@
+<!-- includes the shared header -->
+<%- include("templates/header") %>
+
+<!-- page heading -->
+<h2>Log in</h2>
+
+<!-- login form -->
+<form method="post" action="/loginSubmit">
+
+    <!-- email input -->
+    <input class="form-control mb-2"
+           name="email"
+           type="text"
+           placeholder="email">
+
+    <!-- password input -->
+    <input class="form-control mb-2"
+           name="password"
+           type="password"
+           placeholder="password">
+
+    <!-- submit button -->
+    <button class="btn btn-primary">Submit</button>
+
+</form>
+
+<!-- includes the shared footer -->
+<%- include("templates/footer") %>

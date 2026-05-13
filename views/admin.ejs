@@ -1,0 +1,22 @@
+<!-- includes shared header -->
+<%- include("templates/header") %>
+
+<!-- page heading -->
+<h2>Users</h2>
+
+<!-- ordered list -->
+<ol>
+
+    <!-- loops through every user -->
+    <% for (let i = 0; i < users.length; i++) { %>
+
+        <!-- includes reusable user template -->
+        <%- include("templates/user", { user: users[i] }) %>
+
+    <!-- ends loop -->
+    <% } %>
+
+</ol>
+
+<!-- includes shared footer -->
+<%- include("templates/footer") %>

@@ -1,0 +1,31 @@
+<!-- includes the shared header -->
+<%- include("templates/header") %>
+
+<!-- displays logged in user's name -->
+<h2>Hello, <%= name %></h2>
+
+<!-- bootstrap responsive row -->
+<div class="row">
+
+    <!-- loops through all images -->
+    <% for (let i = 0; i < images.length; i++) { %>
+
+        <!-- bootstrap responsive column -->
+        <div class="col-12 col-md-4">
+
+            <!-- displays image -->
+            <img class="img-fluid mb-3"
+                 src="/<%= images[i] %>">
+
+        </div>
+
+    <!-- ends loop -->
+    <% } %>
+
+</div>
+
+<!-- logout button -->
+<a class="btn btn-danger" href="/logout">Sign out</a>
+
+<!-- includes the shared footer -->
+<%- include("templates/footer") %>
