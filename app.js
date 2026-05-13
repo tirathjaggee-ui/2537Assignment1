@@ -38,13 +38,10 @@ app.use(express.static(__dirname + "/public"));
 
 app.set("view engine", "ejs");
 
-// encrypted mongodb session store
+// mongodb session store
 const mongoStore = MongoStore.create({
     mongoUrl: mongoUrl,
     collectionName: 'sessions',
-    crypto: {
-        secret: mongodb_session_secret
-    },
     ttl: 60 * 60
 });
 
@@ -162,9 +159,7 @@ app.post('/signupSubmit', async (req, res) => {
     req.session.user_type = "user";
     req.session.cookie.maxAge = expireTime;
 
-    req.session.save(() => {
-        res.redirect("/members");
-    });
+    res.redirect("/members");
 });
 
 // LOGIN PAGE
@@ -229,9 +224,7 @@ app.post('/loginSubmit', async (req, res) => {
         req.session.user_type = result[0].user_type;
         req.session.cookie.maxAge = expireTime;
 
-        req.session.save(() => {
-            res.redirect("/members");
-        });
+        res.redirect("/members");
 
     } else {
 
